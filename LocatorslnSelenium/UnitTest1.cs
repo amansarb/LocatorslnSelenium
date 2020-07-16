@@ -58,22 +58,46 @@ namespace LocatorslnSelenium
 
         }
         [TestMethod]
-        public void tagSelect()
+        public void TagSelect()
         {
             IWebDriver driver = new ChromeDriver();
 
             driver.Navigate().GoToUrl("https://www.lipsum.com/");
             driver.Manage().Window.Maximize();
 
-            var paragraph = driver.FindElements(By.TagName("p"));
+            
+           var paragraph = driver.FindElements(By.TagName("p"));
+            string paraText = driver.FindElement(By.TagName("p")).Text;
+            Console.WriteLine(paraText);
             System.Console.WriteLine(paragraph.Count);
             Thread.Sleep(2000);
             foreach (var item in paragraph)
-            { System.Console.WriteLine(item.Text);
+            { 
+                System.Console.WriteLine(item.Text);
             }
             driver.Quit();
+          
+        }
+        [TestMethod]
+         public void TechWintec()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Url = "https://www.wintec.ac.nz/study-at-wintec";
+            IWebElement elem = driver.FindElement(By.Name("q"));
+            elem.SendKeys("Informmation");
+            driver.FindElement(By.XPath("//*[@id='topbarContentPlaceholder_T581BED3A034_Col01']/div/div/form/button/span")).Click();
+            Thread.Sleep(2000);
+            driver.Quit();
+
+
+
+
+
+
+
 
 
         }
     }
+
 }
