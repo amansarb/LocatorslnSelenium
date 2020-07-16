@@ -29,13 +29,28 @@ namespace LocatorslnSelenium
 
             driver.Navigate().GoToUrl("https://www.facebook.com/");
             driver.Manage().Window.Maximize();
-            driver.FindElement(By.Name("firstname")).SendKeys("Aman");
-            driver.FindElement(By.Id("lastname")).SendKeys("deep");
-            driver.FindElement(By.Id("lastname")).SendKeys("deep");
-            driver.FindElement(By.Id("lastname")).SendKeys("deep");
-            driver.FindElement(By.Id("lastname")).SendKeys("deep");
+            IWebElement firstName = driver.FindElement(By.Name("firstname"));
+            firstName.SendKeys("Aman");
+            driver.FindElement(By.Name("lastname")).SendKeys("deep");
+            driver.FindElement(By.Name("reg_email__")).SendKeys("aman.lotey@gmail.com");
+            driver.FindElement(By.Name("reg_passwd__")).SendKeys("1257244");
+           
 
 
+            Thread.Sleep(2000);
+            driver.Quit();
+
+
+        }
+        [TestMethod]
+        public void ClassNameLocator()
+        {
+            IWebDriver driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://www.facebook.com/");
+            driver.Manage().Window.Maximize();
+            driver.FindElement(By.ClassName("email")).SendKeys("aman.lotey@gmail.com");
+            driver.FindElement(By.ClassName("pass")).SendKeys("aman.lotey@gmail.com");
             Thread.Sleep(2000);
             driver.Quit();
 
