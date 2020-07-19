@@ -17,7 +17,7 @@ namespace LocatorslnSelenium
             driver.Navigate().GoToUrl("https://www.facebook.com/");
             driver.Manage().Window.Maximize();
             driver.FindElement(By.Id("email")).SendKeys("aman.lotey@gmail.com");
-            driver.FindElement(By.Id("pass")).SendKeys("aman.lotey@gmail.com");
+            driver.FindElement(By.Id("pass")).SendKeys("1687hy");
             Thread.Sleep(2000);
             driver.Quit();
 
@@ -90,14 +90,41 @@ namespace LocatorslnSelenium
             driver.Quit();
 
 
+        }
+        [TestMethod]
+        public void LinkNextLocator()
+        {
+            IWebDriver driver = new ChromeDriver();
+
+            // driver.Navigate().GoToUrl("http://uitestpractice.com/Students/Contact");
+            driver.Navigate().GoToUrl("http://uitestpractice.com/Students/Switchto");
+            driver.Manage().Window.Maximize();
+           var text= driver.FindElement(By.PartialLinkText("a new window"));
+            text.Click();
+            
+           
 
 
-
-
-
+            Thread.Sleep(2000);
+            driver.Quit();
 
 
         }
+       [TestMethod]
+       public void AbsoluteXpathLocators()
+        {
+            IWebDriver driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://www.facebook.com/");
+            driver.Manage().Window.Maximize();
+            driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div[1]/div/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/form/div[1]/div[1]/div[1]/div[1]/div/div[1]/input"))
+                .SendKeys("Amandeep");
+           ;
+            Thread.Sleep(2000);
+            driver.Quit();
+        }
+
+
     }
 
 }
