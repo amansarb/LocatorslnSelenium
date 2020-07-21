@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
+using System.Data;
 using System.Drawing;
 using System.Threading;
 namespace LocatorslnSelenium
@@ -119,10 +120,53 @@ namespace LocatorslnSelenium
             driver.Manage().Window.Maximize();
             driver.FindElement(By.XPath("/html/body/div[1]/div[3]/div[1]/div/div/div/div/div[2]/div/div[2]/div/div/div/div[1]/form/div[1]/div[1]/div[1]/div[1]/div/div[1]/input"))
                 .SendKeys("Amandeep");
-           ;
+           
             Thread.Sleep(2000);
             driver.Quit();
         }
+
+        [TestMethod]
+        public void RealtiveXpathLocators()
+        {
+            IWebDriver driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://www.facebook.com/");
+            driver.Manage().Window.Maximize();
+            driver.FindElement(By.XPath("//*[@id='u_0_m']")).SendKeys("Amandeep");
+            Thread.Sleep(2000);
+            driver.Quit();
+        }
+        [TestMethod]
+        public void XpathFunctions()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Url = "https://www.wintec.ac.nz/study-at-wintec";
+            driver.Manage().Window.Maximize();
+            driver.FindElement(By.XPath(".//input[starts-with(@class,'search')]")).SendKeys("courses");    // Xpath using starts-with function   
+            driver.FindElement(By.XPath(".//input[contains(@type,'search')]")).SendKeys("IT courses");           // Xpath Using contains function
+            driver.FindElement(By.XPath(".//*[text()='Apply Now']")).Click();                               //XpathUsing text() function
+            Thread.Sleep(2000);
+            driver.FindElement(By.LinkText("Apply here")).Click();
+            // driver.FindElement(By.ClassName("logo")).Click();
+            Thread.Sleep(2000);
+            driver.Quit();
+
+
+        }
+        [TestMethod]
+        public void CssLocator()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Url = "https://www.facebook.com/";
+            driver.Manage().Window.Maximize();
+           // var count = driver.FindElements(By.CssSelector("*")).Count;
+           // Console.WriteLine("elements with css selectors :-" + count);
+           driver.FindElement(By.CssSelector("._8esh")).Click();
+            Thread.Sleep(2000);
+            driver.Quit();
+        }
+
+
 
 
     }
